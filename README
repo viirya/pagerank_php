@@ -1,0 +1,32 @@
+
+PHP extension for pagerank algorithm
+
+To Compile the extension, you need to install cblas and atblas library.
+The extension uses OpenMP and matrix.h written by Evgenii B. Rudnyi.
+
+=Compile=
+make cblas_module.so
+
+=Usage=
+<?php
+
+$array = array(
+               array('0', '1', 0.5),
+               array('0', '2', 0.5),
+               array('2', '0', 0.33333),
+               array('2', '1', 0.33333),
+               array('2', '4', 0.33333),
+               array('3', '4', 0.5),
+               array('3', '5', 0.5),
+               array('4', '3', 0.5),
+               array('4', '5', 0.5),
+               array('5', '3', 1.0),              );
+
+$pi = array(0.16667, 0.16667, 0.16667, 0.16667, 0.16667, 0.16667);
+$v = array(0.16667, 0.16667, 0.16667, 0.16667, 0.16667, 0.16667);
+$n = 6;
+$alpha = 0.9;
+$threshold = 0.00000001;
+print_r(pagerank($pi, $array, $v, $n, $alpha, $threshold));
+
+?>
